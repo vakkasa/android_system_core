@@ -591,7 +591,7 @@ char16_t* utf8_to_utf16_n(const uint8_t* src, size_t srcLen, char16_t* dst, size
             // Multiple UTF16 characters with surrogates
             codepoint = codepoint - 0x10000;
             *u16cur++ = (char16_t) ((codepoint >> 10) + 0xD800);
-            if (u16cur >= u16end) {
+            if ((uint16_t*)u16cur >= u16end) {
                 // Ooops...  not enough room for this surrogate pair.
                 return u16cur-1;
             }
